@@ -25,7 +25,8 @@ class UserForm(forms.ModelForm):
             'username': 'Foydalanuvchi nomi:',
             'first_name': 'Ism:',
             'last_name': 'Familiya:',
-            'password': 'Parol'
+            'password': 'Parol:',
+            'email': 'Email:'
         }
         error_messages = {
             'username': {
