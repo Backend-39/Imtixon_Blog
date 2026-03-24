@@ -7,7 +7,7 @@ import re
 
 
 class UserForm(forms.ModelForm):
-    password_confirm = forms.CharField(widget=forms.PasswordInput)
+    password_confirm = forms.CharField(widget=forms.PasswordInput, label='Parolni tasdiqlang')
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
@@ -22,7 +22,10 @@ class UserForm(forms.ModelForm):
             'username': "Harflar, raqamlar va @/./+/-/_ belgilar. Ko'pi bilan 150ta belgi."
         }
         labels = {
-            'username': 'Foydalanuvchi nomi:'
+            'username': 'Foydalanuvchi nomi:',
+            'first_name': 'Ism:',
+            'last_name': 'Familiya:',
+            'password': 'Parol'
         }
         error_messages = {
             'username': {
