@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+</head>
+<body>
+
+    <li><a href="{% url 'user-home' %}">← Asosiy sahifa</a>
+        
+    <main>
+        <h1>
+            {{request.user.first_name|default:'User'}} {{request.user.last_name|default:''}}
+        </h1>
+        <p>Ism: <b>{{request.user.first_name|default:'Kiritilmagan'}}</b></p>
+        <p>Familiya: <b>{{request.user.last_name|default:'Kiritilmagan'}}</b></p>
+        <p>Email: <b>{{request.user.email|default:'Kiritilmagan'}}</b></p>
+        <hr style="color: beige;">
+        <a href="{% url 'logout' %}">Tizimdan chiqish.</a>
+    </main>
+    <hr>
+    <footer>
+        <p>
+            Backend-39 | <a href="https://t.me/shuhratrozimatov">Shuhratjon Ro'zimatov</a>
+        </p>
+    </footer>
+</body>
+</html>

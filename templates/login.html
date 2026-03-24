@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirish oynasi</title>
+</head>
+<body>
+    <main>
+        <h2>Kirish oynasi</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in login_form %}
+                <label for="{{ field.id_for_label }}">{{field.label}}</label>
+                <br>
+                {{ field }}
+                <br>
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <p style="color:red;"> {{error}} </p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% if login_form.non_field_errors %}
+                {% for error in login_form.non_field_errors %}
+                    <p style="color:red;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+            {% if auth_failed %}
+                <p style="color: red;"> {{auth_failed}} </p>
+            {% endif %}
+            <button>Yuborish</button>
+        </form>
+    </main>
+    <hr>
+    <footer>
+        <p>
+            Backend-39 | <a href="https://t.me/shuhratrozimatov">Shuhratjon Ro'zimatov</a>
+        </p>
+    </footer>
+</body>
+</html>

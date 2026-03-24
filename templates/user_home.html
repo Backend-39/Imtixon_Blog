@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asosiy sahifa</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'user-home' %}">Asosiy sahifa</a></li>
+                <li><a href="{% url 'user-profile' %}">Profil</a></li>
+                <li><a href="{% url 'user-articles' %}">Mening maqolalarim</a></li>
+            </ul> 
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <h1>Ommaviy maqolalar</h1>
+        {% if global_articles %}
+            <hr style="width: 98%; color:beige;">
+            {% for article in global_articles %}
+                <a href="{% url 'user-articles-info' article.slug %}"><h3> {{article.title}} </h3></a>
+                <p> {{article.context|truncatechars:100}} </p>
+            {% endfor %}
+        {% else %}
+            <h2>
+                Hali ommaviy maqolalar mavjud emas!
+            </h2>
+        {% endif %}
+    </main>
+    <hr>
+    <footer>
+        <p>
+            Backend-39 | <a href="https://t.me/shuhratrozimatov">Shuhratjon Ro'zimatov</a>
+        </p>
+    </footer>
+</body>
+</html>

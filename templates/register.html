@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yhatdan o'tish</title>
+</head>
+<body>
+    <main>
+        <h2>Ro'yhatdan o'tish</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in register_form %}
+                <label for="{{ field.id_for_label }}">{{field.label}}</label>
+                <br>
+                {{ field }}
+                <br>
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <p style="color:red;"> {{error}} </p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% if register_form.non_field_errors %}
+                {% for error in register_form.non_field_errors %}
+                    <p style="color:red;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+            <button>Yuborish</button>
+        </form>
+    </main>
+    <hr>
+    <footer>
+        <p>
+            Backend-39 | <a href="https://t.me/shuhratrozimatov">Shuhratjon Ro'zimatov</a>
+        </p>
+    </footer>
+</body>
+</html>

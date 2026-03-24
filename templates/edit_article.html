@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahrirlash</title>
+</head>
+<body>
+    <main>
+        <h2>Maqolani tahrirlash</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in article_form %}
+                <label for="{{ field.id_for_label }}">{{field.label}}</label>
+                <br>
+                {{ field }}
+                <br><br>
+            {% endfor %}
+            <button>Saqlash</button>
+        </form>
+    </main>
+    <hr>
+    <footer>
+        <p>
+            Backend-39 | <a href="https://t.me/shuhratrozimatov">Shuhratjon Ro'zimatov</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maqola qo'shish</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'user-home' %}">Asosiy sahifa</a></li>
+                <li><a href="{% url 'user-profile' %}">Profil</a></li>
+            </ul> 
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <h1> {{article.title}} </h1>
+        <hr style="color: beige;">
+        <p>
+            {{article.context}}
+        </p>
+        <hr style="color: beige;">
+        <h3>Teglar:</h3>
+        <ul>
+            {% if article.tags %}
+                {% for tag in article.tags.all %}
+                    <li> {{tag}} </li>
+                {% endfor %}
+            {% else %}
+                <p> Teg biriktirilmagan! </p>
+            {% endif %}
+        </ul>
+        <hr style="color: beige;">
+        <h3>Maqola yuklagan foydalanuvchi:</h3>
+        <p>Username: <b>{{article.user.username|default:'kiritilmagan.'}}</b></p>
+        <p>Email: <b>{{article.user.email|default:'kiritilmagan.'}}</b></p>
+        <hr style="color: beige;">
+        <p>
+            Maqola yuklangan sana: <b> {{article.created_at|date:'H:i , d.m.Y'}} </b>
+        </p>
+    </main>
+    <hr>
+    <footer>
+        <p>
+            Backend-39 | <a href="https://t.me/shuhratrozimatov">Shuhratjon Ro'zimatov</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mening maqolalarim</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'user-home' %}">Asosiy sahifa</a></li>
+                <li><a href="{% url 'user-profile' %}">Profil</a></li>
+            </ul> 
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <h1>Qo'shilgan maqolalar</h1>
+        {% if articles %}
+            {% for article in articles %}
+                <hr style="color:beige;">
+                <a href="{% url 'edit-article' article.slug %}"><h3> {{article.title}} </h3></a> 
+                <p> {{article.context|truncatechars:100}} </p>
+                <p>Maqola turi: <b>{{article.article_type}}</b></p>
+                <a href="{% url 'delete-user-article' article.slug %}">
+                    <button>
+                        Maqolani o'chirish
+                    </button>
+                </a>
+            {% endfor %}
+        {% else %}
+            <h3>
+                Hali maqolalar mavjud emas!
+            </h3>
+        {% endif %}
+        <hr>
+        <h2>Maqola qo'shish</h2>
+        <p>Bir nechta tegni tanlash uchun shift ni bosib turib tanglang!</p>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in article_form %}
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                <br>
+                {{field}}
+                <br><br>
+            {% endfor %}
+            <input type="hidden" name="add_article" value="1">
+            <button>Qo'shish</button>
+        </form>
+        <hr style="color: beige;">
+        <h2>Teg qo'shish</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="tag_name">Tag nomi:</label>
+            <input type="text" name="name" id="tag_name">
+            <input type="hidden" name="add_tag" value="1">
+            <button>Qo'shish</button>
+        </form>
+    </main>
+    <hr>
+    <footer>
+        <p>
+            Backend-39 | <a href="https://t.me/shuhratrozimatov">Shuhratjon Ro'zimatov</a>
+        </p>
+    </footer>
+</body>
+</html>
